@@ -6,6 +6,28 @@
 
 <br>
 
+### Branch mcp386
+
+<br>
+
+- Cygwin
+- No SDL2
+
+Compile:
+
+```bash
+cmake -G "Unix Makefiles" .
+make
+```
+
+Run:
+
+```bash
+exe/cpp_app
+```
+
+<br>
+
 install SDL2
 
 <pre>

@@ -7,5 +7,5 @@ file(GLOB sourcefiles "src/x86/*.h" "src/x86/*.cpp" "src/*.h" "src/*.cpp")
 add_executable(${PROJECT_NAME} ${sourcefiles}
 )
 
-find_package(OpenGL)
-target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} SDL2_image SDL2_ttf SDL2 SDL2main)
+# find_package(OpenGL)
+# target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} SDL2_image SDL2_ttf SDL2 SDL2main)

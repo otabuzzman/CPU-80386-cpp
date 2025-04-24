@@ -10,6 +10,7 @@
 #include <vector>
 #include "../CMOS.h"
 #include "../KBD.h"
+#include "../../ringbuffer.h"
 
 typedef struct DescriptorTable
 {
@@ -813,9 +814,10 @@ class Serial {
     PIC_Controller *pic;
 
   public:
-    std::string strbufs[1000];
-    int         strbufs_idx = 0;
-    std::string strbuf      = "";
+//    std::string strbufs[1000];
+    RingBuffer<int> strbufs{RingBuffer<int>(1000)};
+//    int         strbufs_idx = 0;
+//    std::string strbuf      = "";
 
   public:
     Serial(PIC_Controller *_pic, int kh, int lh)
@@ -826,27 +828,28 @@ class Serial {
     }
     void store_char(int x)
     {
-        if (x == 13) {
-            strbufs[strbufs_idx] = strbuf;
-            strbuf               = "";
-            strbufs_idx++;
-            if (strbufs_idx == 1000) {
-                strbufs_idx = 0;
-            }
-        } else if (x == '#') {
-            strbuf += x;
-            strbufs[strbufs_idx] = strbuf;
-            strbuf               = "";
-            strbufs_idx++;
-            if (strbufs_idx == 1000) {
-                strbufs_idx = 0;
-            }
-        } else {
-            if (0x1f < x && x < 0x7f) {
-                strbuf += x;
-            }
-        }
-        printf("%c", x);
+        strbufs.push(x);
+//        if (x == 13) {
+//            strbufs[strbufs_idx] = strbuf;
+//            strbuf               = "";
+//            strbufs_idx++;
+//            if (strbufs_idx == 1000) {
+//                strbufs_idx = 0;
+//            }
+//        } else if (x == '#') {
+//            strbuf += x;
+//            strbufs[strbufs_idx] = strbuf;
+//            strbuf               = "";
+//            strbufs_idx++;
+//            if (strbufs_idx == 1000) {
+//                strbufs_idx = 0;
+//            }
+//        } else {
+//            if (0x1f < x && x < 0x7f) {
+//                strbuf += x;
+//            }
+//        }
+//        printf("%c", x);
     }
 
     void update_irq()
@@ -922,7 +925,7 @@ class Serial {
                     Pg = rbr;
                     lsr &= ~(0x01 | 0x10);
                     update_irq();
-                    // send_char_from_fifo();
+                    send_char_from_fifo();
                 }
                 break;
             case 1:
@@ -974,6 +977,8 @@ class Serial {
         if (nh != "" && !(lsr & 0x01)) {
             // send_char(nh.charCodeAt(0));
             // receive_fifo = nh.substr(1, nh.length - 1);
+            send_char(nh.front());
+            receive_fifo = nh.substr(1, nh.length() - 1);
         }
     }
 
