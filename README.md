@@ -2,11 +2,7 @@
 
 <br>
 
-## Intel 80386 PC emulator
-
-<br>
-
-### Branch mcp386
+## Intel 80386 PC emulator (otabuzzman's fork)
 
 <br>
 
@@ -25,6 +21,10 @@ Run:
 ```bash
 exe/cpp_app
 ```
+
+<br>
+
+## Intel 80386 PC emulator (original)
 
 <br>
 
