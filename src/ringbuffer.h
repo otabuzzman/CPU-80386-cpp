@@ -53,7 +53,8 @@ private:
 #include <thread>
 #include <chrono>
 
-// g++ -RINGBUFFER_DUSAGE ringbuffer.h -o ringbuffer
+// ln src/ringbuffer.h ringbuffer.cpp
+// g++ -DRINGBUFFER_DUSAGE ringbuffer.h -o ringbuffer
 
 void producer(RingBuffer<int>& buffer) {
     int value = 0;
