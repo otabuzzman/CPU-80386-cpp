@@ -46,7 +46,7 @@ exe/cpp_app
 
 <br>
 
-After boot sequence enter shell commands at prompt.
+Enter shell commands at prompt after boot sequence. Ctrl-C terminates Linux.
 
 <br>
 
