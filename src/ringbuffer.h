@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _RINGBUFFER_H
+#define _RINGBUFFER_H
+
 #include <vector>
 #include <mutex>
 #include <condition_variable>
@@ -44,3 +46,39 @@ private:
     std::condition_variable not_empty_;
     std::condition_variable not_full_;
 };
+
+#ifdef RINGBUFFER_USAGE
+
+#include <iostream>
+#include <thread>
+#include <chrono>
+
+// g++ -RINGBUFFER_DUSAGE ringbuffer.h -o ringbuffer
+
+void producer(RingBuffer<int>& buffer) {
+    int value = 0;
+    while (true) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        buffer.push(value);
+        std::cout << "[producer] pushed " << value++ << "\n";
+    }
+}
+
+int main() {
+    RingBuffer<int> buffer(5);
+
+    std::thread worker(producer, std::ref(buffer));
+
+    std::cout << "press CR to read value from buffer...\n";
+    while (true) {
+        std::cin.get(); // wait for CR
+        int value = buffer.pop();
+        std::cout << "[main] popped " << value << "\n";
+    }
+
+    worker.join(); // not reached
+}
+
+#endif // RINGBUFFER_USAGE
+
+#endif // _RINGBUFFER_H

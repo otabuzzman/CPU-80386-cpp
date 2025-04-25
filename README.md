@@ -6,8 +6,8 @@
 
 <br>
 
-- Cygwin
-- No SDL2
+### Cygwin
+SDL omitted. Uses bash window for character I/O.
 
 Compile:
 
@@ -25,6 +25,32 @@ exe/cpp_app
 <br>
 
 ## Intel 80386 PC emulator (original)
+
+<br>
+
+### Cygwin
+SDL omitted. Uses bash window for character I/O.
+
+Compile:
+
+```bash
+cmake -G "Unix Makefiles" .
+make
+```
+
+Boot Linux:
+
+```bash
+exe/cpp_app
+```
+
+<br>
+
+After boot sequence enter shell commands at prompt.
+
+<br>
+
+### Other OS
 
 <br>
 

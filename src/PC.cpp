@@ -4,20 +4,24 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
-// #include <SDL2/SDL.h>
-// #include <SDL2/SDL_ttf.h>
+#ifndef __CYGWIN__
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+#endif
 #include "PC.h"
 
 PC::PC()
 {
     cpu = new x86Internal(mem_size);
 
-//    TTF_Init();
-//    font = TTF_OpenFont("bin/cp437.ttf", 14);
-//    if (font == NULL) {
-//        printf("error: font not found\n");
-//        exit(EXIT_FAILURE);
-//    }
+#ifndef __CYGWIN__
+    TTF_Init();
+    font = TTF_OpenFont("bin/cp437.ttf", 14);
+    if (font == NULL) {
+        printf("error: font not found\n");
+        exit(EXIT_FAILURE);
+    }
+#endif
 }
 PC::~PC()
 {
@@ -95,7 +99,7 @@ void PC::run_cpu()
     //     // std::this_thread::sleep_for(std::chrono::milliseconds(10));
     // }
 }
-/*
+#ifndef __CYGWIN__
 void PC::paint(SDL_Renderer *renderer, int widht, int height)
 {
     SDL_RenderClear(renderer);
@@ -138,18 +142,18 @@ void PC::paint(SDL_Renderer *renderer, int widht, int height)
     SDL_RenderPresent(renderer);
     SDL_Delay(10);
 }
-*/
-void PC::paint()
+#endif // __CYGWIN__
+void PC::print()
 {
     char chr;
-    chr = cpu->serial->strbufs.pop();
+    chr = cpu->serial->chrbuf.pop();
 
     std::cout << chr << std::flush;
 }
-void PC::piant()
+void PC::input()
 {
-    std::string str = "";
-    str = std::cin.get();
+    int chr;
+    chr = std::cin.get();
 
-    cpu->serial->send_chars(str);
+    cpu->serial->send_chars(chr);
 }
