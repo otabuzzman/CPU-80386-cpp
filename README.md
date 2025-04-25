@@ -2,7 +2,7 @@
 
 <br>
 
-## Intel 80386 PC emulator (otabuzzman's fork)
+## Intel 80386 PC emulator
 
 <br>
 
@@ -17,28 +17,6 @@ make
 ```
 
 Run:
-
-```bash
-exe/cpp_app
-```
-
-<br>
-
-## Intel 80386 PC emulator (original)
-
-<br>
-
-### Cygwin
-SDL omitted. Uses bash window for character I/O.
-
-Compile:
-
-```bash
-cmake -G "Unix Makefiles" .
-make
-```
-
-Boot Linux:
 
 ```bash
 exe/cpp_app
