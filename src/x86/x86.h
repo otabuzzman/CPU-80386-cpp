@@ -949,7 +949,9 @@ class Serial {
 
     void send_char_from_fifo()
     {
-        send_char(receive_fifo.pop());
+        if (!receive_fifo.isempty() && !(lsr & 0x01)) {
+            send_char(receive_fifo.pop());
+        }
     }
 
     void send_chars(int na)

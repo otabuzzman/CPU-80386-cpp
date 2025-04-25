@@ -36,6 +36,10 @@ public:
         return item;
     }
 
+    bool isempty() {
+        return head_ == tail_;
+    }
+
 private:
     std::vector<T> buffer_;
     size_t capacity_;
