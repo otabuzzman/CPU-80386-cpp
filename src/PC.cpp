@@ -4,7 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <iostream>
-#ifndef __CYGWIN__
+#ifndef NO_SDL
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #endif
@@ -14,7 +14,7 @@ PC::PC()
 {
     cpu = new x86Internal(mem_size);
 
-#ifndef __CYGWIN__
+#ifndef NO_SDL
     TTF_Init();
     font = TTF_OpenFont("bin/cp437.ttf", 14);
     if (font == NULL) {
@@ -99,7 +99,7 @@ void PC::run_cpu()
     //     // std::this_thread::sleep_for(std::chrono::milliseconds(10));
     // }
 }
-#ifndef __CYGWIN__
+#ifndef NO_SDL
 void PC::paint(SDL_Renderer *renderer, int widht, int height)
 {
     SDL_RenderClear(renderer);
@@ -142,11 +142,11 @@ void PC::paint(SDL_Renderer *renderer, int widht, int height)
     SDL_RenderPresent(renderer);
     SDL_Delay(10);
 }
-#endif // __CYGWIN__
+#endif // NO_SDL
 void PC::print()
 {
     char chr;
-    chr = cpu->serial->chrbuf.pop();
+    chr = cpu->serial->print_fifo.pop();
 
     std::cout << chr << std::flush;
 }

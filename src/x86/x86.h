@@ -809,12 +809,12 @@ class Serial {
     int         scr          = 0;
     int         set_irq_func = 0;
     int         write_func   = 0;
-    RingBuffer<int> receive_fifo{RingBuffer<int>(1000)};
+    RingBuffer<int> input_fifo{RingBuffer<int>(1000)};
 
     PIC_Controller *pic;
 
   public:
-    RingBuffer<int> chrbuf{RingBuffer<int>(1000)};
+    RingBuffer<int> print_fifo{RingBuffer<int>(1000)};
 
   public:
     Serial(PIC_Controller *_pic, int kh, int lh)
@@ -825,7 +825,7 @@ class Serial {
     }
     void store_char(int x)
     {
-        chrbuf.push(x);
+        print_fifo.push(x);
     }
 
     void update_irq()
@@ -949,14 +949,14 @@ class Serial {
 
     void send_char_from_fifo()
     {
-        if (!receive_fifo.isempty() && !(lsr & 0x01)) {
-            send_char(receive_fifo.pop());
+        if (!input_fifo.isempty() && !(lsr & 0x01)) {
+            send_char(input_fifo.pop());
         }
     }
 
     void send_chars(int na)
     {
-        receive_fifo.push(na);
+        input_fifo.push(na);
         send_char_from_fifo();
     }
 

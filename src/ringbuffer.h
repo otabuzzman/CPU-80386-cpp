@@ -36,9 +36,7 @@ public:
         return item;
     }
 
-    bool isempty() {
-        return head_ == tail_;
-    }
+    bool isempty() { return head_ == tail_; }
 
 private:
     std::vector<T> buffer_;

@@ -6,29 +6,30 @@
 
 <br>
 
-### Cygwin
+### No SDL2
 SDL omitted. Uses bash window for character I/O.
 
 Compile:
 
 ```bash
-cmake -G "Unix Makefiles" .
+cmake -DNO_SDL=ON -G "Unix Makefiles" .
 make
 ```
 
 Run:
 
 ```bash
+# set stdin to character mode and turn off echo
+stty -icanon -echo
+# boot Linux
 exe/cpp_app
+# reset stdin
+stty icanon echo
 ```
 
 <br>
 
-Enter shell commands at prompt after boot sequence. Ctrl-C terminates Linux.
-
-<br>
-
-### Other OS
+Enter shell commands at prompt after Linux boot sequence. Ctrl-C terminates Linux.
 
 <br>
 

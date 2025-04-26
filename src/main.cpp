@@ -1,9 +1,9 @@
 #include <cstddef>
-#ifndef __CYGWIN__
+#ifndef NO_SDL
 #define SDL_MAIN_HANDLED
 #endif
 #include "PC.h"
-#ifndef __CYGWIN__
+#ifndef NO_SDL
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #endif
@@ -13,7 +13,7 @@
 
 int Running = 1;
 
-#ifndef __CYGWIN__
+#ifndef NO_SDL
 void render_loop(PC *pc, SDL_Renderer *render, int width, int height)
 {
     while (Running) {
@@ -33,7 +33,7 @@ void input_loop(PC *pc)
         pc->input();
     }
 }
-#endif // __CYGWIN__
+#endif // NO_SDL
 int main(int ArgCount, char **Args)
 {
     static const int width = 840, height = 350;
@@ -43,7 +43,7 @@ int main(int ArgCount, char **Args)
 
     int speed = 20;
 
-#ifndef __CYGWIN__
+#ifndef NO_SDL
     SDL_Window *window =
         SDL_CreateWindow("", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     SDL_Renderer *render = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -57,7 +57,7 @@ int main(int ArgCount, char **Args)
 
     while (Running) {
         pc->run_cpu();
-#ifndef __CYGWIN__
+#ifndef NO_SDL
         SDL_Event Event;
         while (SDL_PollEvent(&Event)) {
             if (Event.type == SDL_QUIT)
@@ -65,14 +65,14 @@ int main(int ArgCount, char **Args)
         }
 #endif
         if (speed != 100)
-#ifndef __CYGWIN__
+#ifndef NO_SDL
             SDL_Delay(1000 / speed);
 #else
             std::this_thread::sleep_for(std::chrono::milliseconds(1000 / speed));
 #endif
     }
 
-#ifndef __CYGWIN__
+#ifndef NO_SDL
     th.join();
 #else
     print.join();

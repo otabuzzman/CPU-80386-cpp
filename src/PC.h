@@ -4,7 +4,7 @@
 #include "x86/x86.h"
 #include <stdexcept>
 #include <vector>
-#ifndef __CYGWIN__
+#ifndef NO_SDL
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #endif
@@ -21,7 +21,7 @@ class PC {
     void start();
     void run_cpu();
 
-#ifndef __CYGWIN__
+#ifndef NO_SDL
     void paint(SDL_Renderer *render, int widht, int height);
 #else
     void print();
@@ -30,7 +30,7 @@ class PC {
 
   private:
     x86Internal *cpu  = nullptr;
-#ifndef __CYGWIN__
+#ifndef NO_SDL
     TTF_Font    *font = nullptr;
 #endif
 
