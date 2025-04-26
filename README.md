@@ -33,6 +33,10 @@ Enter shell commands at prompt after Linux boot sequence. Ctrl-C terminates Linu
 
 <br>
 
+### With SDL2
+
+<br>
+
 install SDL2
 
 <pre>
