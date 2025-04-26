@@ -6,8 +6,30 @@
 
 <br>
 
+install SDL2
+
+<pre>
+sudo apt-get install build-essential cmake clang-format libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
+</pre>
+
+<br><br><br>
+
+boot Linux
+
+<br><br><br>
+
+### WIP
+
+https://user-images.githubusercontent.com/10168979/177424985-9e91d420-b6b8-4e00-8db4-0dbcb3d3b295.mp4
+
+![ss](https://user-images.githubusercontent.com/10168979/177425392-062bc70e-73c5-4fb4-a054-42669a44c054.png)
+
+use JSLinux as a reference
+
+<br>
+
 ### No SDL2
-SDL omitted. Uses bash window for character I/O.
+SDL omitted. Uses terminal window for character I/O.
 
 Compile:
 
@@ -30,32 +52,6 @@ stty icanon echo
 <br>
 
 Enter shell commands at prompt after Linux boot sequence. Ctrl-C terminates Linux.
-
-<br>
-
-### With SDL2
-
-<br>
-
-install SDL2
-
-<pre>
-sudo apt-get install build-essential cmake clang-format libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev
-</pre>
-
-<br><br><br>
-
-boot Linux
-
-<br><br><br>
-
-### WIP
-
-https://user-images.githubusercontent.com/10168979/177424985-9e91d420-b6b8-4e00-8db4-0dbcb3d3b295.mp4
-
-![ss](https://user-images.githubusercontent.com/10168979/177425392-062bc70e-73c5-4fb4-a054-42669a44c054.png)
-
-use JSLinux as a reference
 
 <br><br><br><br><br><br>
 

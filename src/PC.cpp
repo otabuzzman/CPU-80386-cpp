@@ -155,5 +155,5 @@ void PC::input()
     int chr;
     chr = std::cin.get();
 
-    cpu->serial->send_chars(chr);
+    cpu->serial->input_fifo_push(chr);
 }

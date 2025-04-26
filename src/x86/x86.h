@@ -954,7 +954,7 @@ class Serial {
         }
     }
 
-    void send_chars(int na)
+    void input_fifo_push(int na)
     {
         input_fifo.push(na);
         send_char_from_fifo();
