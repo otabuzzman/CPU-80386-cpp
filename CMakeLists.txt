@@ -11,8 +11,9 @@ set_property(TARGET cpp_app PROPERTY CXX_STANDARD 20)
 
 option(NO_SDL "Disable SDL support" OFF)
 
-if(NO_SDL AND (CMAKE_SYSTEM_NAME STREQUAL "CYGWIN" OR CMAKE_SYSTEM_NAME STREQUAL "Linux"))
+if(NO_SDL AND (CMAKE_SYSTEM_NAME STREQUAL "CYGWIN" OR CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
     add_compile_definitions(NO_SDL)
+    add_compile_options(-g) # cmake -DCMAKE_BUILD_TYPE=Debug ...
     message(STATUS "SDL support disabled.")
 else()
     find_package(OpenGL)
