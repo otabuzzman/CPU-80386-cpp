@@ -142,7 +142,7 @@ void PC::paint(SDL_Renderer *renderer, int widht, int height)
     SDL_RenderPresent(renderer);
     SDL_Delay(10);
 }
-#endif // NO_SDL
+#else
 void PC::print()
 {
     char chr;
@@ -157,3 +157,4 @@ void PC::input()
 
     cpu->serial->input_fifo_push(chr);
 }
+#endif // NO_SDL
