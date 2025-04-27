@@ -31,20 +31,31 @@ use JSLinux as a reference
 ### No SDL2
 SDL omitted. Uses terminal window for character I/O.
 
-Compile:
+Compile on Cygwin/ Linos/ Macos:
 
 ```bash
 cmake -DNO_SDL=ON -G "Unix Makefiles" .
 make
 ```
 
+Compile on Winos:
+
+```bash
+cmake -DNO_SDL=ON -G "NMake Makefiles" .
+make
+```
+
+Add `-DCMAKE_BUILD_TYPE=Debug` to CMake command to compile for debugging.
+
 Run:
 
 ```bash
 # set stdin to character mode and turn off echo
 stty -icanon -echo
+
 # boot Linux
 exe/cpp_app
+
 # reset stdin
 stty icanon echo
 ```
