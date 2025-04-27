@@ -50,7 +50,7 @@ Add `-DCMAKE_BUILD_TYPE=Debug` to CMake command to compile for debugging.
 Run:
 
 ```bash
-# set stdin to character mode and turn off echo
+# set stdin to character mode and turn off echo (not on Winos)
 stty -icanon -echo
 
 # boot Linux
