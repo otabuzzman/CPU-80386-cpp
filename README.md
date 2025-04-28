@@ -62,7 +62,7 @@ stty icanon echo
 
 <br>
 
-Enter shell commands at prompt after Linux boot sequence. Ctrl-C terminates Linux.
+Enter shell commands at prompt after Linux boot sequence. Ctrl-C terminates Linux. Run `stty -icanon -echo` to enable character mode and turn off echo for common tty behaviour.
 
 <br><br><br><br><br><br>
 
