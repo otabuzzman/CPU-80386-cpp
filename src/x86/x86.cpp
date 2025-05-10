@@ -14,8 +14,8 @@ x86::x86(int _mem_size)
     mem_size     = _mem_size;
     new_mem_size = mem_size + ((15 + 3) & ~3);
 
-    this->segs[2].flags = (1 << 22);
-    this->segs[1].flags = (1 << 22);
+    // this->segs[2].flags = (1 << 22);
+    // this->segs[1].flags = (1 << 22);
 
     phys_mem = (uint8_t *)malloc(sizeof(uint8_t) * new_mem_size);
     for (int i = 0; i < new_mem_size; i++) {
@@ -51,7 +51,7 @@ void x86::load(uint8_t *bin, int offset, int size)
 }
 void x86::start(int start_addr, int initrd_size, int cmdline_addr)
 {
-    eip     = start_addr;
+    // eip     = start_addr;
     regs[0] = mem_size;
     regs[3] = initrd_size;
     regs[1] = cmdline_addr;
@@ -4593,6 +4593,7 @@ void x86Internal::st32_port(int port_num, int x)
 int x86Internal::ioport_read(int mem8_loc)
 {
     int port = mem8_loc & (1024 - 1);
+    printf("*** ioport_read 0x%04x\n", port);
     switch (port) {
         case 0x80:
             // (function(mem8_loc, data) {})(mem8_loc);
@@ -4632,6 +4633,7 @@ int x86Internal::ioport_read(int mem8_loc)
 void x86Internal::ioport_write(int mem8_loc, int data)
 {
     int port = mem8_loc & (1024 - 1);
+    printf("*** ioport_write 0x%04x : 0x%08x\n", port, data);
     switch (port) {
         case 0x80:
             // (function(mem8_loc, data) {})(mem8_loc, data);

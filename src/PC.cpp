@@ -33,9 +33,11 @@ PC::~PC()
 void PC::init()
 {
     printf("load file\n");
-    load(0, "bin/vmlinux-2.6.20.bin");
-    load(1, "bin/root.bin");
-    load(2, "bin/linuxstart.bin");
+    // load(0, "bin/vmlinux-2.6.20.bin");
+    // load(1, "bin/root.bin");
+    // load(2, "bin/linuxstart.bin");
+    load(0, "../test386.asm/test386.bin");
+    load(2, "../test386.asm/test386.bin");
 }
 void PC::load(int binno, std::string path)
 {
@@ -49,14 +51,16 @@ void PC::load(int binno, std::string path)
     int offset = 0;
     if (binno == 0) {
         bin0   = buffer;
-        offset = 0x00100000;
+        // offset = 0x00100000;
+        offset = 0x000f0000;
     } else if (binno == 1) {
         bin1        = buffer;
         offset      = 0x00400000;
         initrd_size = size;
     } else if (binno == 2) {
         bin2   = buffer;
-        offset = 0x10000;
+        // offset = 0x10000;
+        offset = 0x0;
     }
 
     cpu->load(buffer, offset, size);
